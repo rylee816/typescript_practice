@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+type myObj = {
+  name: string
+  location: string
+  birthYear: number
+  getAge(): string | number
+}
+
+class Person implements myObj {
+  name: string
+  location: string
+  birthYear: number
+
+  constructor(name: string, location: string, birthYear: number){
+    this.name = name;
+    this.location = location;
+    this.birthYear = birthYear
+  }
+  getAge(): string | number {
+    return new Date().getFullYear() - this.birthYear
+  }
+}
+
+
+
+const randy = new Person("Randy", "Detroit", 1977)
+
+const ryan = new Person("Ryan", "Detroit", 1979)
+
+const woozle = new Person("Woozle Boy", "Heaven", 2002)
+
+const objArr: Array<Person> = [];
+
+objArr.push(randy)
+objArr.push(ryan)
+objArr.push(woozle)
+
+
 function App() {
+const [people, setPeople]  = useState<Array<Person>>(objArr)
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +57,13 @@ function App() {
         >
           Learn React
         </a>
+      {people.map(el => (
+        <div key={el.name} style={{margin: "2rem 0rem"}}>
+        <h3>{el.name}</h3>
+        <p>{el.location}</p>
+        <p>{el.getAge()}</p>
+        </div>
+      ))}
       </header>
     </div>
   );
