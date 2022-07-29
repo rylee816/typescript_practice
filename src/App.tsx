@@ -10,7 +10,7 @@ type myObj = {
   getAge(): number;
 };
 
-class Person implements myObj {
+export class Person implements myObj {
   name: string;
   location: string;
   birthYear: number;
