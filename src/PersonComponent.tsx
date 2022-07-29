@@ -1,20 +1,17 @@
 import React from 'react'
 
-type styleProp = {
-  margin: string
-}
 
-type Tprops = {
+
+export interface Tprops {
     name: string
     location: string
-    getAge: any
-    style: styleProp
+    getAge: number
     index: number
 }
 
 function Person(props: Tprops) {
   return (
-    <div data-testid={`people-${props.index}`} style={props.style}>
+    <div data-testid={`people-${props.index}`} style={{margin: "2rem"}}>
         <h3>{props.name}</h3>
         <p>{props.location}</p>
         <p>{props.getAge}</p>

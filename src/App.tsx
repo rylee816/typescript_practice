@@ -1,52 +1,48 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import PersonComponent from './PersonComponent';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import PersonComponent from "./PersonComponent";
 
 type myObj = {
-  name: string
-  location: string
-  birthYear: number
-  getAge(): string | number
-}
+  name: string;
+  location: string;
+  birthYear: number;
+  getAge(): number;
+};
 
 class Person implements myObj {
-  name: string
-  location: string
-  birthYear: number
+  name: string;
+  location: string;
+  birthYear: number;
 
-  constructor(name: string, location: string, birthYear: number){
+  constructor(name: string, location: string, birthYear: number) {
     this.name = name;
     this.location = location;
-    this.birthYear = birthYear
+    this.birthYear = birthYear;
   }
-  getAge(): string | number {
-    return new Date().getFullYear() - this.birthYear
+  getAge():number {
+    return new Date().getFullYear() - this.birthYear;
   }
 }
 
-
-
-const randy = new Person("Randy", "Detroit", 1977)
-const ryan = new Person("Ryan", "Detroit", 1979)
-const woozle = new Person("Woozle Boy", "Heaven", 2002)
-const juno = new Person("Juno", "Grosse Pointe", 2015)
+const randy = new Person("Randy", "Detroit", 1977);
+const ryan = new Person("Ryan", "Detroit", 1979);
+const woozle = new Person("Woozle Boy", "Heaven", 2002);
+const juno = new Person("Juno", "Grosse Pointe", 2015);
 
 const objArr: Array<Person> = [];
 
-
 const addPerson = (person: Person) => {
-  objArr.push(person)
-}
+  objArr.push(person);
+};
 
-addPerson(randy)
-addPerson(ryan)
-addPerson(woozle)
-addPerson(juno)
-
+addPerson(randy);
+addPerson(ryan);
+addPerson(woozle);
+addPerson(juno);
 
 function App() {
-const [people, setPeople]  = useState<Array<Person>>(objArr);
+  const [people, setPeople] = useState<Array<Person>>(objArr);
 
   return (
     <div className="App">
@@ -63,9 +59,15 @@ const [people, setPeople]  = useState<Array<Person>>(objArr);
         >
           Learn React
         </a>
-      {people.map((el, index) => (
-        <PersonComponent index={index} name={el.name} location={el.location} getAge={el.getAge()} key={index} style={{margin: "2rem 0rem"}} />
-      ))}
+        {people.map((el, index) => (
+          <PersonComponent
+            index={index}
+            name={el.name}
+            location={el.location}
+            getAge={el.getAge()}
+            key={index}
+          />
+        ))}
       </header>
     </div>
   );
