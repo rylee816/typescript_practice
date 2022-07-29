@@ -64,7 +64,7 @@ const [people, setPeople]  = useState<Array<Person>>(objArr);
           Learn React
         </a>
       {people.map((el, index) => (
-        <PersonComponent name={el.name} location={el.location} getAge={el.getAge()} data-testid={`people-${index}`} key={index} style={{margin: "2rem 0rem"}} />
+        <PersonComponent index={index} name={el.name} location={el.location} getAge={el.getAge()} key={index} style={{margin: "2rem 0rem"}} />
       ))}
       </header>
     </div>
