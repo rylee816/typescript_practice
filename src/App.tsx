@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PersonComponent from './PersonComponent';
 
 type myObj = {
   name: string
@@ -27,24 +28,25 @@ class Person implements myObj {
 
 
 const randy = new Person("Randy", "Detroit", 1977)
-
 const ryan = new Person("Ryan", "Detroit", 1979)
-
 const woozle = new Person("Woozle Boy", "Heaven", 2002)
+const juno = new Person("Juno", "Grosse Pointe", 2015)
 
 const objArr: Array<Person> = [];
 
+
 const addPerson = (person: Person) => {
-   objArr.push(person)
+  objArr.push(person)
 }
 
 addPerson(randy)
 addPerson(ryan)
 addPerson(woozle)
+addPerson(juno)
 
 
 function App() {
-const [people, setPeople]  = useState<Array<Person>>(objArr)
+const [people, setPeople]  = useState<Array<Person>>(objArr);
 
   return (
     <div className="App">
@@ -61,12 +63,8 @@ const [people, setPeople]  = useState<Array<Person>>(objArr)
         >
           Learn React
         </a>
-      {people.map(el => (
-        <div data-testid="people" key={el.name} style={{margin: "2rem 0rem"}}>
-        <h3>{el.name}</h3>
-        <p>{el.location}</p>
-        <p>{el.getAge()}</p>
-        </div>
+      {people.map((el, index) => (
+        <PersonComponent name={el.name} location={el.location} getAge={el.getAge()} data-testid={`people-${index}`} key={index} style={{margin: "2rem 0rem"}} />
       ))}
       </header>
     </div>
