@@ -34,9 +34,13 @@ const woozle = new Person("Woozle Boy", "Heaven", 2002)
 
 const objArr: Array<Person> = [];
 
-objArr.push(randy)
-objArr.push(ryan)
-objArr.push(woozle)
+const addPerson = (person: Person) => {
+   objArr.push(person)
+}
+
+addPerson(randy)
+addPerson(ryan)
+addPerson(woozle)
 
 
 function App() {
@@ -58,7 +62,7 @@ const [people, setPeople]  = useState<Array<Person>>(objArr)
           Learn React
         </a>
       {people.map(el => (
-        <div key={el.name} style={{margin: "2rem 0rem"}}>
+        <div data-testid="people" key={el.name} style={{margin: "2rem 0rem"}}>
         <h3>{el.name}</h3>
         <p>{el.location}</p>
         <p>{el.getAge()}</p>
